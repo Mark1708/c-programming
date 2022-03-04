@@ -33,6 +33,9 @@
 *.out
 *.app
 *.i*86
+
+# Mac
+.DS_Store
 *.x86_64
 *.hex
 
