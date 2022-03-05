@@ -5,5 +5,6 @@ int max3(int a, int b, int c) {
         return b;
     else if (c > a && c > b)
         return c;
-    else return b;
+    else
+        return b;
 }

@@ -1,5 +1,5 @@
-void normalize(int * a) {
-   while (*a % 2 == 0 && *a > 0) {
-       *a /= 2;
-   }
+void normalize(int* a) {
+    while (*a % 2 == 0 && *a > 0) {
+        *a /= 2;
+    }
 }
