@@ -9,7 +9,8 @@ void array_int_fill(int64_t* array, size_t* size) {
     }
 }
 
-// Считать размер массива в *size, выделить память под массив и заполнить его числами.
+// Считать размер массива в *size, выделить память под массив и заполнить его
+// числами.
 int64_t* array_int_read(size_t* size) {
     *size = read_size();
     if (*size > 0) {
@@ -17,7 +18,8 @@ int64_t* array_int_read(size_t* size) {
         array_int_fill(array, size);
 
         return array;
-    } else return NULL;
+    } else
+        return NULL;
 }
 
 int64_t read_int64() {

@@ -21,8 +21,7 @@ struct maybe_int64 maybe_int64_min(struct maybe_int64 a, struct maybe_int64 b) {
     } else {
         if (a.value >= b.value) {
             return b;
-        }
-        else {
+        } else {
             return a;
         }
     }

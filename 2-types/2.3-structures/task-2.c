@@ -14,16 +14,16 @@ const struct maybe_int64 none_int64 = { 0 };
 
 size_t read_size() {
     size_t sz = 0;
-    scanf("%zu", & sz);
+    scanf("%zu", &sz);
     return sz;
 }
 
 struct array_int {
-    int64_t * data;
+    int64_t* data;
     size_t size;
 };
 
-void array_int_fill(int64_t * array, size_t sz) {
+void array_int_fill(int64_t* array, size_t sz) {
     for (size_t i = 0; i < sz; i = i + 1) {
         array[i] = read_int64();
     }
@@ -32,14 +32,11 @@ void array_int_fill(int64_t * array, size_t sz) {
 struct array_int array_int_read() {
     const size_t size = read_size();
     if (size > 0) {
-        int64_t * array = malloc(sizeof(int64_t) * size);
+        int64_t* array = malloc(sizeof(int64_t) * size);
         array_int_fill(array, size);
-        return (struct array_int) {
-            .data = array,
-                .size = size
-        };
+        return (struct array_int){.data = array, .size = size};
     } else
-        return (struct array_int) {0};
+        return (struct array_int){0};
 }
 
 // возвращает ошибку если индекс за пределами массива
@@ -67,15 +64,15 @@ void array_int_print(struct array_int array) {
 }
 
 struct maybe_int64 array_int_min(struct array_int array) {
-    int64_t * res = NULL;
+    int64_t* res = NULL;
     for (size_t i = 0; i < array.size; i = i + 1) {
         if (res == NULL) {
-            res = & array.data[i];
-        } else if (array.data[i] < * res) {
-            res = & array.data[i];
+            res = &array.data[i];
+        } else if (array.data[i] < *res) {
+            res = &array.data[i];
         }
     }
-    return (res == NULL) ? none_int64 : some_int64( * res);
+    return (res == NULL) ? none_int64 : some_int64(*res);
 }
 
 void array_int_free(struct array_int a) {

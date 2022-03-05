@@ -10,10 +10,11 @@ struct array_int {int64_t* data; size_t size;};
 struct array_int array_int_create( size_t sz );
 
 struct array_int array_int_create( size_t sz ) {
-    return (struct array_int) { .data = malloc( sizeof( int64_t ) *sz ), .size = sz };
+    return (struct array_int) { .data = malloc( sizeof( int64_t ) *sz ), .size =
+sz };
 }
 */
-int64_t* array_int_last(struct array_int a);
+int64_t *array_int_last(struct array_int a);
 struct maybe_int64 array_int_get(struct array_int a, size_t i);
 bool array_int_set(struct array_int a, size_t i, int64_t value);
 void array_int_print(struct array_int array);
@@ -26,33 +27,31 @@ struct stack {
 
 // Количество элементов в стеке
 size_t stack_count(const struct stack *s) {
-    return s -> count;
+    return s->count;
 }
 
 // Создаем и деинициализируем стек
 struct stack stack_create(size_t size) {
-    return (struct stack) {
-        .count = 0, .data = array_int_create(size)
-    };
+    return (struct stack){.count = 0, .data = array_int_create(size)};
 }
 void stack_destroy(struct stack *s) {
-    array_int_free( &(s -> data));
-    s -> count = 0;
+    array_int_free(&(s->data));
+    s->count = 0;
 }
 
 // Стек полный
 bool stack_is_full(const struct stack *s) {
-    return s -> count == s -> data.size;
+    return s->count == s->data.size;
 }
 // Стек пустой
 bool stack_is_empty(const struct stack *s) {
-    return s -> count == 0;
+    return s->count == 0;
 }
 
 // Поместить значение в стек
 bool stack_push(struct stack *s, int64_t value) {
-    if (!stack_is_full(s) && array_int_set(s -> data, s -> count, value)) {
-        s -> count = s -> count + 1;
+    if (!stack_is_full(s) && array_int_set(s->data, s->count, value)) {
+        s->count = s->count + 1;
         return true;
     } else {
         return false;
@@ -64,14 +63,14 @@ struct maybe_int64 stack_pop(struct stack *s) {
     if (stack_is_empty(s)) {
         return none_int64;
     } else {
-        s -> count = s -> count - 1;
-        return array_int_get(s -> data, s -> count);
+        s->count = s->count - 1;
+        return array_int_get(s->data, s->count);
     }
 }
 
 void stack_print(const struct stack *s) {
     for (size_t i = 0; i < stack_count(s); i = i + 1) {
-        print_int64(array_int_get(s -> data, i).value);
+        print_int64(array_int_get(s->data, i).value);
         printf(" ");
     }
 }
